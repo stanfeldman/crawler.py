@@ -42,6 +42,10 @@ class Processor(object):
 	@abstractproperty
 	def start_url(self):
 		return ""
+		
+	@property
+	def allowed_urls(self):
+		return [urlsplit(self.start_url).hostname]
 	
 	@abstractproperty
 	def selectors(self):

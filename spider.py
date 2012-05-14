@@ -29,7 +29,7 @@ class Spider(Greenlet):
 			for item in self.document.xpath('//a/@href'):
 				item = urldefrag(item)[0]
 				url = urlparse(item)
-				if url.geturl() and item not in self.crawler.visited_urls and self.crawler.base_host == url.hostname:
+				if url.geturl() and item not in self.crawler.visited_urls and url.hostname in self.processor.allowed_urls:
 						self.crawler.urls.put(item)
 		
 	def process_page(self, url):
